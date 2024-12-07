@@ -6,21 +6,6 @@ import "./App.css";
 
 function App() {
 
-
-  const containerStyle = {
-    display: "flex",
-    width: "100%",
-    height: "100vh", 
-  };
-
-  const travelListStyle = {
-    flex: 3, 
-  };
-
-  const favoritesStyle = {
-    flex: 1, 
-    borderLeft: "2px solid #ccc", 
-  };
   const [favorites, setFavorites] = useState([])
 
   const addToFavorites = (plan) => {
@@ -28,6 +13,9 @@ function App() {
       setFavorites([...favorites, plan]);
     }
   }
+  const handleDelete = (id) => {
+    setFavorites(favorites.filter((fav) => fav.id !== id));
+  };
   return (
     <>
       <div>
@@ -37,12 +25,12 @@ function App() {
       <h3 className="text-iron">Tailored Travel Plans for Ironhackers</h3>
 
       {/* RENDER YOUR LIST COMPONENT HERE */}
-      <div style={containerStyle}>
-      <div style={travelListStyle}>
+      <div className="app-container">
+      <div className="travel-list-container">
         <TravelList addToFavorites={addToFavorites} /> 
         </div>
-        <div style={favoritesStyle}>
-        <Favorites favorites={favorites} />
+        <div className="favorites">
+        <Favorites favorites={favorites} onDelete={handleDelete} />
       </div>
      </div>
     </>
