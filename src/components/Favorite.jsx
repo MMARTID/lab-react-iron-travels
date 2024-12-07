@@ -7,7 +7,8 @@ function Favorites({ favorites }) {
     padding: "20px",
     borderLeft: "2px solid #ccc",
     backgroundColor: "#f9f9f9",
-    minHeight: "100vh",
+    minHeight: "300vh",
+    width: "100%"
   }
 
   const headerStyle = {
@@ -19,12 +20,38 @@ function Favorites({ favorites }) {
   }
 
   const favoriteItemStyle = {
+    display: "flex",
+   //flexDirection: "column",
+   // alignItems: "flex-start",
+   // justifyContent: "center",
+    background: "lightblue", 
+    border: "1px solid transparent",
+    width: "20%",
+    minWidth: "850px",
+    margin: "10px 0",
+    borderRadius: "10px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
     marginBottom: "10px",
-    padding: "10px",
-    background: "white",
-    borderRadius: "5px",
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    padding: "10px",  
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
   } 
+  const imageStyle = {
+    maxWidth: "150px", 
+    height: "150px",
+    objectFit: "cover",
+    marginRight: "20px",
+    marginLeft: "10px",
+    borderRadius: "8px",
+    position: "relative",
+  }
+  const infoStyle = {
+    flex: 1,
+    marginBottom: "auto",
+    position: "revert",
+    justifyContent: "flex-start",
+    textAlign: "left",
+    paddingInline: "10px"
+  }
 
   const titleStyle = {
     fontSize: "18px",
@@ -43,8 +70,13 @@ function Favorites({ favorites }) {
       {favorites.length > 0 ? (
         favorites.map((fav, index) => (
           <div key={index} style={favoriteItemStyle}>
+             <div style={imageStyle}>
+              <img src={fav.image} alt={fav.destination} style={imageStyle} />
+            </div>
+            <div style={infoStyle}>
             <h4 style={titleStyle}>{fav.destination}</h4>
             <p style={descriptionStyle}>{fav.description}</p>
+            </div>
           </div>
         ))
       ) : (
